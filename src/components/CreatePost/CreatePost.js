@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import { Redirect } from 'react-router-dom'
 
 import messages from '../AutoDismissAlert/messages'
 
@@ -21,10 +22,8 @@ class CreatePost extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target)
     event.persist()
     this.setState((prevState) => {
-      console.log(prevState)
       const name = event.target.name
       const value = event.target.value
       const updatedValue = { [name]: value }
@@ -50,6 +49,10 @@ class CreatePost extends Component {
         message: messages.createPostSuccess,
         variant: 'success'
       }))
+      // this lets it stay on the same page when a post is created
+      .then((res) => {
+        this.forceUpdate()
+      })
       .catch(error => this.props.msgAlert({
         heading: 'Failed with error: ' + error.message,
         message: messages.createPostFailure,

@@ -18,9 +18,6 @@ class IndexPost extends Component {
     }
   }
   destroyPost = (event) => {
-    console.log(event.target)
-    console.log(this.state)
-    console.log(this.props)
     axios({
       method: 'DELETE',
       url: `${apiUrl}/posts/${event.target.value}`,
@@ -28,9 +25,6 @@ class IndexPost extends Component {
         Authorization: 'Bearer ' + this.props.user.token
       }
     })
-      .then((res) => {
-        console.log('deleted')
-      })
       .then(() => this.props.msgAlert({
         heading: 'Post Deleted',
         message: messages.deletePostSuccess,
@@ -54,7 +48,6 @@ class IndexPost extends Component {
       }
     })
       .then((res) => {
-        console.log(res.data)
         this.setState({ posts: res.data.posts })
       })
       .catch(console.error)
