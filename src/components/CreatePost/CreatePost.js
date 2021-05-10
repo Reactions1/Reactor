@@ -36,7 +36,7 @@ class CreatePost extends Component {
     event.preventDefault()
 
     axios({
-      method: 'POST',
+      method: 'GET',
       url: `${apiUrl}/posts`,
       data: { post: this.state.post },
       headers: {
