@@ -8,7 +8,7 @@ import apiUrl from './../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-class CreatePost extends Component {
+class UpdatePost extends Component {
   constructor () {
     super()
     this.state = {
@@ -16,11 +16,12 @@ class CreatePost extends Component {
         title: '',
         body: ''
       },
-      createdId: null
+      updated: false
     }
   }
 
   handleChange = (event) => {
+    console.log(this.props)
     event.persist()
     this.setState((prevState) => {
       const name = event.target.name
@@ -29,31 +30,24 @@ class CreatePost extends Component {
       return { post: { ...prevState.post, ...updatedValue } }
     })
   }
+
   handleSubmit = (event) => {
     event.preventDefault()
 
     axios({
-      method: 'POST',
-      url: `${apiUrl}/posts`,
+      method: 'PATCH',
+      url: `${apiUrl}/posts/${this.props.value}`,
       data: { post: this.state.post },
       headers: {
-        Authorization: 'Bearer ' + this.props.user.token
+        Authorization: 'Bearer ' + this.props.name.user.token
       }
     })
-      .then((res) => {
-        console.log('this is the response ' + res.data.post._id)
-        this.setState({ createdId: res.data.post._id })
-      })
-      .then(() => this.props.msgAlert({
-        heading: 'Post Created',
+      .then(() => this.props.name.msgAlert({
+        heading: 'Post Updated',
         message: messages.createPostSuccess,
         variant: 'success'
       }))
-      // this lets it stay on the same page when a post is created
-      .then((res) => {
-        this.forceUpdate()
-      })
-      .catch(error => this.props.msgAlert({
+      .catch(error => this.props.name.msgAlert({
         heading: 'Failed with error: ' + error.message,
         message: messages.createPostFailure,
         variant: 'danger'
@@ -68,7 +62,6 @@ class CreatePost extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Create Post</h3>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
@@ -104,4 +97,4 @@ class CreatePost extends Component {
     )
   }
 }
-export default CreatePost
+export default UpdatePost
