@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 
 class IndexPost extends Component {
   constructor (props) {
@@ -16,7 +17,31 @@ class IndexPost extends Component {
       posts: null
     }
   }
-
+  destroyPost = (event) => {
+    console.log(event.target)
+    console.log(this.state)
+    console.log(this.props)
+    axios({
+      method: 'DELETE',
+      url: `${apiUrl}/posts/${event.target.value}`,
+      headers: {
+        Authorization: 'Bearer ' + this.props.user.token
+      }
+    })
+      .then((res) => {
+        console.log('deleted')
+      })
+      .then(() => this.props.msgAlert({
+        heading: 'Post Deleted',
+        message: messages.deletePostSuccess,
+        variant: 'success'
+      }))
+      .catch(error => this.props.msgAlert({
+        heading: 'Failed with error: ' + error.message,
+        message: messages.deletePostFailure,
+        variant: 'danger'
+      }))
+  }
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
     // this function runs at the end of the Mounting stage
@@ -36,9 +61,7 @@ class IndexPost extends Component {
   }
 
   render () {
-    console.log('this is the state' + this.state.posts)
     const { posts } = this.state
-    console.log(posts)
 
     // if we haven't loaded any movies
     if (!posts) {
@@ -53,6 +76,7 @@ class IndexPost extends Component {
     const postsJsx = posts.map(post => (
       <li key={post._id}>
         {post.title} {post.body}
+        <button value={post._id} onClick={this.destroyPost}>Delete</button>
       </li>
     ))
 
@@ -61,9 +85,7 @@ class IndexPost extends Component {
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>My Wall</h3>
           <ul>
-            <li>
-              {postsJsx}
-            </li>
+            {postsJsx}
           </ul>
         </div>
       </div>
