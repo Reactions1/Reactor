@@ -9,6 +9,7 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import IndexUsers from './components/IndexUsers/IndexUsers'
+import ShowUser from './components/ShowUser/ShowUser'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 
 // Post components
@@ -78,6 +79,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/users' render={() => (
             <IndexUsers msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/users/:id' render={() => (
+            <ShowUser msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
