@@ -49,8 +49,8 @@ class IndexUsers extends Component {
     }
 
     const usersJsx = users.map(user => (
-      <Link to={`/users/${user._id}`} key={user._id}>
-        <li key={user._id}>
+      <Link to={`/users/${user._id}`} key={user._id} value={user}>
+        <li>
           {user.email}
         </li>
       </Link>
