@@ -18,8 +18,6 @@ class IndexPost extends Component {
     }
   }
   destroyPost = (event) => {
-    console.log(this.state)
-    console.log(this.props)
     axios({
       method: 'DELETE',
       url: `${apiUrl}/posts/${event.target.value}`,
