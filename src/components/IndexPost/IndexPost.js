@@ -3,12 +3,9 @@ import React, { Component } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-<<<<<<< HEAD
 import messages from '../AutoDismissAlert/messages'
-=======
 import Button from 'react-bootstrap/Button'
 import UpdatePost from './../UpdatePost/Update'
->>>>>>> Users can update their posts
 
 class IndexPost extends Component {
   constructor (props) {
@@ -21,12 +18,8 @@ class IndexPost extends Component {
     }
   }
   destroyPost = (event) => {
-<<<<<<< HEAD
-=======
     console.log(this.state)
     console.log(this.props)
-    console.log(event.target.value)
->>>>>>> Users can update their posts
     axios({
       method: 'DELETE',
       url: `${apiUrl}/posts/${event.target.value}`,
@@ -34,7 +27,6 @@ class IndexPost extends Component {
         Authorization: 'Bearer ' + this.props.user.token
       }
     })
-<<<<<<< HEAD
       .then(() => this.props.msgAlert({
         heading: 'Post Deleted',
         message: messages.deletePostSuccess,
@@ -45,12 +37,11 @@ class IndexPost extends Component {
         message: messages.deletePostFailure,
         variant: 'danger'
       }))
-=======
-      .catch(console.error)
->>>>>>> Users can update their posts
   }
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
+    console.log(this.props)
+    console.log(this.state)
     // this function runs at the end of the Mounting stage
     // Here we will make any HTTP requests
     axios({
@@ -67,10 +58,7 @@ class IndexPost extends Component {
   }
   render () {
     const { posts } = this.state
-<<<<<<< HEAD
 
-=======
->>>>>>> Users can update their posts
     // if we haven't loaded any movies
     if (!posts) {
       // show a loading spinner
@@ -84,12 +72,8 @@ class IndexPost extends Component {
     const postsJsx = posts.map(post => (
       <li key={post._id}>
         {post.title} {post.body}
-<<<<<<< HEAD
-        <button value={post._id} onClick={this.destroyPost}>Delete</button>
-=======
         <Button value={post._id} onClick={this.destroyPost}>Delete</Button>
         <UpdatePost value={post._id} name={this.props}/>
->>>>>>> Users can update their posts
       </li>
     )
     )
@@ -105,4 +89,5 @@ class IndexPost extends Component {
     )
   }
 }
+
 export default IndexPost
