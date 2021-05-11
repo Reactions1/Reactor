@@ -21,11 +21,14 @@ class App extends Component {
     super(props)
     this.state = {
       user: null,
-      msgAlerts: []
+      msgAlerts: [],
+      selectedUser: false
     }
   }
 
   setUser = user => this.setState({ user })
+
+  setSelectedUser = clickedUser => this.setState({ selectedUser: clickedUser })
 
   clearUser = () => this.setState({ user: null })
 
@@ -80,8 +83,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/users' render={() => (
             <IndexUsers msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/users/:id' render={() => (
-            <ShowUser msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} exact path='/users/:id' render={(match) => (
+            <ShowUser msgAlert={this.msgAlert} user={user} match={match} />
           )} />
         </main>
       </Fragment>

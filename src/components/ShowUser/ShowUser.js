@@ -10,7 +10,8 @@ class ShowUser extends Component {
     super(props)
 
     this.state = {
-      posts: null
+      posts: null,
+      owner: null
     }
   }
 
@@ -21,21 +22,40 @@ class ShowUser extends Component {
     // Here we will make any HTTP requests
     axios({
       method: 'GET',
-      url: `${apiUrl}/posts`,
+      url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
       headers: {
         Authorization: 'Bearer ' + this.props.user.token
       }
     })
       .then((res) => {
         this.setState({ posts: res.data.posts })
+        this.setState({ owner: res.data.posts[0].owner.email })
       })
       .catch(console.error)
   }
 
+  // componentDidUpdate (prevState) {
+  //   if (this.state !== prevState) {
+  //     axios({
+  //       method: 'GET',
+  //       url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
+  //       headers: {
+  //         Authorization: 'Bearer ' + this.props.user.token
+  //       }
+  //     })
+  //       .then((res) => {
+  //         this.setState({ posts: res.data.posts })
+  //         this.setState({ owner: res.data.posts[0].owner.email })
+  //       })
+  //       .catch(console.error)
+  //   }
+  // }
+
   render () {
+    // console.log('user id?', this.props.match.match.params.id)
     const { posts } = this.state
-    console.log('this is our user state ', posts)
-    console.log('this is our props ', this.props)
+    console.log('here is the owner ', this.state.owner)
+    // console.log('this is our user email ', posts.0.title)
     //
     // // if we haven't loaded any movies
     if (!posts) {
@@ -47,20 +67,18 @@ class ShowUser extends Component {
       )
     }
 
-    // const postsJsx = posts.map(post => (
-    //   <Link to={`/users/${user._id}`} key={user._id}>
-    //     <li key={post._id}>
-    //       {post.title} {post.body}
-    //     </li>
-    //   </Link>
-    // )
-    // )
+    const postsJsx = posts.map(post => (
+      <li key={post._id}>
+        {post.title} {post.body}
+      </li>
+    )
+    )
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>{this.props.user.email} Wall</h3>
+          <h3>{`${this.state.owner}'s Wall`}</h3>
           <ul>
-            {this.props.email}
+            {postsJsx}
           </ul>
         </div>
       </div>
