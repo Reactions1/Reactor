@@ -60,6 +60,21 @@ class CreatePost extends Component {
       })
       )
   }
+  componentDidUpdate (prevState) {
+    if (this.state !== prevState) {
+      axios({
+        method: 'GET',
+        url: `${apiUrl}/posts`,
+        headers: {
+          Authorization: 'Bearer ' + this.props.user.token
+        }
+      })
+        .then((res) => {
+          this.setState({ posts: res.data.posts })
+        })
+        .catch(console.error)
+    }
+  }
   render () {
     // if (this.state.created) {
     //   return <Redirect to={`/posts/${this.state.createdId}`} />
