@@ -1,45 +1,44 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
+// import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-// import Button from 'react-bootstrap/Button'
+// import { movieShow } from '../../api/movies'
 
-class IndexUsers extends Component {
+class ShowUser extends Component {
   constructor (props) {
-    // this is a best practice
-    // this sets `this.props` in the constructor
     super(props)
-    // keep track of all the movies we want to show, they will initially be null
+
     this.state = {
-      users: null
+      posts: null
     }
   }
 
+  // do this whenever MovieIndex is first shown on the page (mounted)
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
     // this function runs at the end of the Mounting stage
     // Here we will make any HTTP requests
     axios({
       method: 'GET',
-      url: `${apiUrl}/users`,
+      url: `${apiUrl}/posts`,
       headers: {
         Authorization: 'Bearer ' + this.props.user.token
       }
     })
       .then((res) => {
-        console.log(res)
-        this.setState({ users: res.data.users })
+        this.setState({ posts: res.data.posts })
       })
       .catch(console.error)
   }
 
   render () {
-    const { users } = this.state
-    console.log('this is our user state ', users)
+    const { posts } = this.state
+    console.log('this is our user state ', posts)
+    console.log('this is our props ', this.props)
     //
     // // if we haven't loaded any movies
-    if (!users) {
+    if (!posts) {
       // show a loading spinner
       return (
         <Spinner animation="border" role="status">
@@ -48,20 +47,20 @@ class IndexUsers extends Component {
       )
     }
 
-    const usersJsx = users.map(user => (
-      <Link to={`/users/${user._id}`} key={user._id}>
-        <li key={user._id}>
-          {user.email}
-        </li>
-      </Link>
-    )
-    )
+    // const postsJsx = posts.map(post => (
+    //   <Link to={`/users/${user._id}`} key={user._id}>
+    //     <li key={post._id}>
+    //       {post.title} {post.body}
+    //     </li>
+    //   </Link>
+    // )
+    // )
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>All Users</h3>
+          <h3>{this.props.user.email} Wall</h3>
           <ul>
-            {usersJsx}
+            {this.props.email}
           </ul>
         </div>
       </div>
@@ -69,4 +68,4 @@ class IndexUsers extends Component {
   }
 }
 
-export default IndexUsers
+export default ShowUser
