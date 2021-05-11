@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 import messages from '../AutoDismissAlert/messages'
 
@@ -35,7 +36,7 @@ class CreatePost extends Component {
     event.preventDefault()
 
     axios({
-      method: 'POST',
+      method: 'GET',
       url: `${apiUrl}/posts`,
       data: { post: this.state.post },
       headers: {
@@ -58,6 +59,10 @@ class CreatePost extends Component {
       )
   }
   render () {
+    if (this.state.created) {
+      return <Redirect to={`/posts/${this.state.createdId}`} />
+    }
+
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
