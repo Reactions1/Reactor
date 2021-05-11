@@ -1,1 +1,26 @@
+$primary: #14213d;
+$secondary: #fca311;
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: #E5E5E5;
+}
+
+.navbar-light {
+  .navbar-brand {
+    color: #fca311;
+	}
+
+  .navbar-nav {
+    .nav-link {
+      color: #E5E5E5;
+		}
+	}
+}
+
+.navbar-text {
+  color: #E5E5E5;
+  display: inline-block;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+}
