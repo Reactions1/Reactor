@@ -91,10 +91,10 @@ class IndexPost extends Component {
     )
     )
     return (
-      <div className="row">
+      <div className="wall">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>My Wall</h3>
-          <ul>
+          <h3 className="wall-title">My Wall</h3>
+          <ul className="post-list">
             {postsJsx}
           </ul>
         </div>
