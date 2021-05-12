@@ -5,6 +5,7 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 // import { movieShow } from '../../api/movies'
 
+// comment here for later deletion and so the file color shows up
 class ShowUser extends Component {
   constructor (props) {
     super(props)
@@ -34,22 +35,22 @@ class ShowUser extends Component {
       .catch(console.error)
   }
 
-  // componentDidUpdate (prevState) {
-  //   if (this.state !== prevState) {
-  //     axios({
-  //       method: 'GET',
-  //       url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
-  //       headers: {
-  //         Authorization: 'Bearer ' + this.props.user.token
-  //       }
-  //     })
-  //       .then((res) => {
-  //         this.setState({ posts: res.data.posts })
-  //         this.setState({ owner: res.data.posts[0].owner.email })
-  //       })
-  //       .catch(console.error)
-  //   }
-  // }
+  componentDidUpdate (prevProps) {
+    if (this.props !== prevProps) {
+      axios({
+        method: 'GET',
+        url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
+        headers: {
+          Authorization: 'Bearer ' + this.props.user.token
+        }
+      })
+        .then((res) => {
+          this.setState({ posts: res.data.posts })
+          this.setState({ owner: res.data.posts[0].owner.email })
+        })
+        .catch(console.error)
+    }
+  }
 
   render () {
     // console.log('user id?', this.props.match.match.params.id)
