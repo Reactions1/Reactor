@@ -11,6 +11,7 @@ import SignOut from './components/SignOut/SignOut'
 import IndexUsers from './components/IndexUsers/IndexUsers'
 import ShowUser from './components/ShowUser/ShowUser'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import AllPosts from './components/AllPosts/AllPosts'
 
 // Post components
 import CreatePost from './components/CreatePost/CreatePost'
@@ -44,9 +45,10 @@ class App extends Component {
       return { msgAlerts: [...state.msgAlerts, { heading, message, variant, id }] }
     })
   }
+
   render () {
     const { msgAlerts, user } = this.state
-    // const [modalShow, setModalShow] = React.useState(false)
+
     return (
       <Fragment>
         <Header user={user} />
@@ -84,6 +86,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/users/:id' render={(match) => (
             <ShowUser msgAlert={this.msgAlert} user={user} match={match} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/news-feed' render={(match) => (
+            <AllPosts msgAlert={this.msgAlert} user={user} match={match} />
           )} />
         </main>
       </Fragment>
