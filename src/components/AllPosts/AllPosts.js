@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-import LikePost from './../LikePost/LikePost'
 // import { FaTrash } from 'react-icons/fa'
 
 class IndexPost extends Component {
@@ -67,7 +66,6 @@ class IndexPost extends Component {
       <li key={post._id}>
         {post.owner.email}
         {post.title} {post.body}
-        <LikePost value={post._id} name={this.props}/>
       </li>
     )
     )
