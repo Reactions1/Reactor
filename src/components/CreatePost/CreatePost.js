@@ -7,7 +7,7 @@ import apiUrl from './../../apiConfig'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-// import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal'
 
 class CreatePost extends Component {
   constructor () {
@@ -76,12 +76,60 @@ class CreatePost extends Component {
         .catch(console.error)
     }
   }
-  render () {
+  // render () {
+  //   return (
+  //     <div className="row">
+  //       <div className="col-sm-10 col-md-8 mx-auto mt-5">
+  //         <h3>Create Post</h3>
+  //         <Form onSubmit={this.handleSubmit}>
+  //           <Form.Group controlId="title">
+  //             <Form.Label>Title</Form.Label>
+  //             <Form.Control
+  //               required
+  //               type="text"
+  //               name="title"
+  //               value={this.state.title}
+  //               placeholder="Post"
+  //               onChange={this.handleChange}
+  //             />
+  //           </Form.Group>
+  //           <Form.Group controlId="body">
+  //             <Form.Label>Body</Form.Label>
+  //             <Form.Control
+  //               required
+  //               name="body"
+  //               type="text"
+  //               value={this.state.body}
+  //               placeholder="Body"
+  //               onChange={this.handleChange}
+  //             />
+  //           </Form.Group>
+  //           <Button
+  //             variant="primary"
+  //             type="submit"
+  //           >
+  //             Submit
+  //           </Button>
+  //         </Form>
+  //       </div>
+  //     </div>
+  //   )
+  // }
+  render (props) {
     return (
-      <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Create Post</h3>
-          <Form onSubmit={this.handleSubmit}>
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+          Make a Post!
+          </Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={this.handleSubmit}>
+          <Modal.Body>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control
@@ -104,15 +152,15 @@ class CreatePost extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-            >
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
-          </Form>
-        </div>
-      </div>
+            <Button onClick={props.onHide}>Close</Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     )
   }
   // render (props) {
@@ -164,4 +212,5 @@ class CreatePost extends Component {
   //   )
   // }
 }
+
 export default CreatePost

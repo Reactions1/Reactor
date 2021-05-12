@@ -48,10 +48,9 @@ class App extends Component {
       return { msgAlerts: [...state.msgAlerts, { heading, message, variant, id }] }
     })
   }
-
   render () {
     const { msgAlerts, user } = this.state
-
+    // const [modalShow, setModalShow] = React.useState(false)
     return (
       <Fragment>
         <Header user={user} />
