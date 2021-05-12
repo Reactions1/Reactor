@@ -3,9 +3,7 @@ import React, { Component } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-import messages from '../AutoDismissAlert/messages'
-import Button from 'react-bootstrap/Button'
-import UpdatePost from './../UpdatePost/Update'
+import LikePost from './../LikePost/LikePost'
 // import { FaTrash } from 'react-icons/fa'
 
 class IndexPost extends Component {
@@ -18,25 +16,7 @@ class IndexPost extends Component {
       posts: null
     }
   }
-  destroyPost = (event) => {
-    axios({
-      method: 'DELETE',
-      url: `${apiUrl}/posts/${event.target.value}`,
-      headers: {
-        Authorization: 'Bearer ' + this.props.user.token
-      }
-    })
-      .then(() => this.props.msgAlert({
-        heading: 'Post Deleted',
-        message: messages.deletePostSuccess,
-        variant: 'success'
-      }))
-      .catch(error => this.props.msgAlert({
-        heading: 'Failed with error: ' + error.message,
-        message: messages.deletePostFailure,
-        variant: 'danger'
-      }))
-  }
+
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
     console.log('the props ', this.props)
@@ -44,7 +24,7 @@ class IndexPost extends Component {
     // Here we will make any HTTP requests
     axios({
       method: 'GET',
-      url: `${apiUrl}/posts`,
+      url: `${apiUrl}/allposts`,
       headers: {
         Authorization: 'Bearer ' + this.props.user.token
       }
@@ -59,7 +39,7 @@ class IndexPost extends Component {
     if (this.state !== prevState) {
       axios({
         method: 'GET',
-        url: `${apiUrl}/posts`,
+        url: `${apiUrl}/allposts`,
         headers: {
           Authorization: 'Bearer ' + this.props.user.token
         }
@@ -85,16 +65,16 @@ class IndexPost extends Component {
 
     const postsJsx = posts.map(post => (
       <li key={post._id}>
+        {post.owner.email}
         {post.title} {post.body}
-        <Button value={post._id} onClick={this.destroyPost}>Delete</Button>
-        <UpdatePost value={post._id} name={this.props}/>
+        <LikePost value={post._id} name={this.props}/>
       </li>
     )
     )
     return (
       <div className="wall">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3 className="wall-title">My Wall</h3>
+          <h3 className="wall-title">News Feed</h3>
           <ul className="post-list">
             {postsJsx}
           </ul>
