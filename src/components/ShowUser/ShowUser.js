@@ -4,17 +4,15 @@ import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 // import { movieShow } from '../../api/movies'
-
+// comment here for later deletion and so the file color shows up
 class ShowUser extends Component {
   constructor (props) {
     super(props)
-
     this.state = {
       posts: null,
       owner: null
     }
   }
-
   // do this whenever MovieIndex is first shown on the page (mounted)
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
@@ -33,9 +31,8 @@ class ShowUser extends Component {
       })
       .catch(console.error)
   }
-
-  componentDidUpdate (prevState) {
-    if (this.state !== prevState) {
+  componentDidUpdate (prevProps) {
+    if (this.props !== prevProps) {
       axios({
         method: 'GET',
         url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
@@ -50,7 +47,6 @@ class ShowUser extends Component {
         .catch(console.error)
     }
   }
-
   render () {
     // console.log('user id?', this.props.match.match.params.id)
     const { posts } = this.state
@@ -66,7 +62,6 @@ class ShowUser extends Component {
         </Spinner>
       )
     }
-
     const postsJsx = posts.map(post => (
       <li key={post._id}>
         {post.title} {post.body}
@@ -85,5 +80,4 @@ class ShowUser extends Component {
     )
   }
 }
-
 export default ShowUser
