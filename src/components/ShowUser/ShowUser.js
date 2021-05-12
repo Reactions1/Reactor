@@ -4,6 +4,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 // import { movieShow } from '../../api/movies'
+
 // comment here for later deletion and so the file color shows up
 class ShowUser extends Component {
   constructor (props) {
@@ -31,6 +32,10 @@ class ShowUser extends Component {
       })
       .catch(console.error)
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> Close infinite loop on componentDidUpdate
   componentDidUpdate (prevProps) {
     if (this.props !== prevProps) {
       axios({
@@ -47,6 +52,10 @@ class ShowUser extends Component {
         .catch(console.error)
     }
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> Close infinite loop on componentDidUpdate
   render () {
     // console.log('user id?', this.props.match.match.params.id)
     const { posts } = this.state
