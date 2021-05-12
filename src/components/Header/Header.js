@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+// import Button from 'react-bootstrap/Button'
+// import CreatePost from '../CreatePost/CreatePost'
 
 const authenticatedOptions = (
   <Fragment>
@@ -10,6 +12,14 @@ const authenticatedOptions = (
     <Nav.Link href="#posts">Posts</Nav.Link>
     <Nav.Link href="#users">Users</Nav.Link>
   </Fragment>
+  // <Button variant="primary" onClick={() => setModalShow(true)}>
+  //   Create
+  //   <CreatePost
+  //     show={modalShow}
+  //     onHide={() => setModalShow(false)}
+  //   />
+  // </Button>
+
 )
 
 const unauthenticatedOptions = (
@@ -25,36 +35,19 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar variant="light" bg="primary" expand="md">
-    <Navbar.Brand class="brand" variant="light" href="#" >
+  <Navbar bg="secondary" variant="primary" expand="md">
+    <Navbar.Brand href="#" >
       Reactor
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
-        { user && <span className="navbar-text mr-2" variant="light">Welcome, {user.email}</span>}
+        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
         { alwaysOptions }
         { user ? authenticatedOptions : unauthenticatedOptions }
       </Nav>
     </Navbar.Collapse>
   </Navbar>
 )
-// const Header = ({ user }) => (
-//   <Navbar bg="primary" expand="lg">
-//   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-//   <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//   <Navbar.Collapse id="basic-navbar-nav">
-//     <Nav className="mr-auto">
-//       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-//         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-//         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-//         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-//         <NavDropdown.Divider />
-//         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-//       </NavDropdown>
-//     </Nav>
-//   </Navbar.Collapse>
-// </Navbar>
-// )
 
 export default Header
