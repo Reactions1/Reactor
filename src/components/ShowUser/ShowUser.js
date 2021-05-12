@@ -34,22 +34,22 @@ class ShowUser extends Component {
       .catch(console.error)
   }
 
-  // componentDidUpdate (prevState) {
-  //   if (this.state !== prevState) {
-  //     axios({
-  //       method: 'GET',
-  //       url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
-  //       headers: {
-  //         Authorization: 'Bearer ' + this.props.user.token
-  //       }
-  //     })
-  //       .then((res) => {
-  //         this.setState({ posts: res.data.posts })
-  //         this.setState({ owner: res.data.posts[0].owner.email })
-  //       })
-  //       .catch(console.error)
-  //   }
-  // }
+  componentDidUpdate (prevState) {
+    if (this.state !== prevState) {
+      axios({
+        method: 'GET',
+        url: `${apiUrl}/posts/${this.props.match.match.params.id}`,
+        headers: {
+          Authorization: 'Bearer ' + this.props.user.token
+        }
+      })
+        .then((res) => {
+          this.setState({ posts: res.data.posts })
+          this.setState({ owner: res.data.posts[0].owner.email })
+        })
+        .catch(console.error)
+    }
+  }
 
   render () {
     // console.log('user id?', this.props.match.match.params.id)
