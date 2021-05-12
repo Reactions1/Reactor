@@ -1,19 +1,25 @@
-$primary: #14213d;
-$secondary: #fca311;
+$primary: #fca311;
+$secondary: #023047;
+$background: #219ebc;
+$border-color: #8ecae6;
 @import '~bootstrap/scss/bootstrap';
 
 body {
-  background-color: #E5E5E5;
+  background-color: $background;
+  color: $primary;
 }
-
+.row {
+  margin-left: 50%;
+  margin-right: 50%;
+}
 .navbar-light {
   .navbar-brand {
-    color: #fca311;
+    color: $background;
 	}
 
   .navbar-nav {
     .nav-link {
-      color: #E5E5E5;
+      color: $primary;
 		}
 	}
 }
@@ -23,4 +29,25 @@ body {
   display: inline-block;
   padding-bottom: .5rem;
   padding-top: .5rem;
+}
+.row {
+  align-content: center;
+  border: 10px;
+  border-radius: 20px;
+  border-color: $border-color;
+  border-style: double;
+  margin-left: 25%;
+  min-width: 30%;
+  text-align: center;
+  color: white;
+  width: 50%;
+}
+
+.post-list {
+  list-style: none;
+}
+
+.wall {
+  color: white;
+  text-align: center;
 }
