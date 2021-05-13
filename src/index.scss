@@ -31,6 +31,7 @@ body {
   padding-top: .5rem;
 }
 .row {
+  display: block;
   align-content: center;
   border: 10px;
   border-radius: 20px;
@@ -49,5 +50,13 @@ body {
 
 .wall {
   color: white;
+  display: block;
   text-align: center;
+}
+.wall-title {
+  text-align: center;
+}
+.row {
+  display: inline-block;
+  align-content: center;
 }
