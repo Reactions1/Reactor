@@ -12,7 +12,8 @@ class IndexUsers extends Component {
     super(props)
     // keep track of all the movies we want to show, they will initially be null
     this.state = {
-      users: null
+      users: null,
+      selectedUser: false
     }
   }
 
@@ -37,6 +38,7 @@ class IndexUsers extends Component {
   render () {
     const { users } = this.state
     console.log('this is our user state ', users)
+    console.log('here is our selected user ', this.props.setSelectedUser)
     //
     // // if we haven't loaded any movies
     if (!users) {
@@ -49,7 +51,7 @@ class IndexUsers extends Component {
     }
 
     const usersJsx = users.map(user => (
-      <Link to={`/users/${user._id}`} key={user._id} value={user}>
+      <Link to={`/users/${user._id}`} key={user._id} value={user} onClick={this.setSelectedUser}>
         <li>
           {user.email}
         </li>
