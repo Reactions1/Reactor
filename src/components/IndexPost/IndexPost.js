@@ -100,7 +100,7 @@ class IndexPost extends Component {
         <li>
           <h4>{post.title}</h4> <br/> {post.body} <br/>
           <Button className="delete" value={post._id} onClick={this.destroyPost}>Delete</Button>
-          <UpdatePost value={post._id} name={this.props}/>
+          <UpdatePost className="update" value={post._id} name={this.props}/>
         </li>
       </div>
     )
