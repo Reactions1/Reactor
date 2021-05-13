@@ -32,10 +32,6 @@ class ShowUser extends Component {
       })
       .catch(console.error)
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> Close infinite loop on componentDidUpdate
   componentDidUpdate (prevProps) {
     if (this.props !== prevProps) {
       axios({
@@ -52,10 +48,7 @@ class ShowUser extends Component {
         .catch(console.error)
     }
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> Close infinite loop on componentDidUpdate
   render () {
     // console.log('user id?', this.props.match.match.params.id)
     const { posts } = this.state
