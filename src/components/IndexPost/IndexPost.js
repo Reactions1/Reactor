@@ -26,6 +26,16 @@ class IndexPost extends Component {
         Authorization: 'Bearer ' + this.props.user.token
       }
     })
+      .then(() => axios({
+        method: 'GET',
+        url: `${apiUrl}/posts`,
+        headers: {
+          Authorization: 'Bearer ' + this.props.user.token
+        }
+      }))
+      .then((res) => {
+        this.setState({ posts: res.data.posts })
+      })
       .then(() => this.props.msgAlert({
         heading: 'Post Deleted',
         message: messages.deletePostSuccess,
@@ -55,21 +65,23 @@ class IndexPost extends Component {
       .catch(console.error)
   }
 
-  componentDidUpdate (prevState) {
-    if (this.state !== prevState) {
-      axios({
-        method: 'GET',
-        url: `${apiUrl}/posts`,
-        headers: {
-          Authorization: 'Bearer ' + this.props.user.token
-        }
-      })
-        .then((res) => {
-          this.setState({ posts: res.data.posts })
-        })
-        .catch(console.error)
-    }
-  }
+  // componentDidUpdate (prevState) {
+  //   if (this.state !== prevState) {
+  //     console.log('this.state' + this.state)
+  //     console.log('this is prevState' + prevState)
+  //     axios({
+  //       method: 'GET',
+  //       url: `${apiUrl}/posts`,
+  //       headers: {
+  //         Authorization: 'Bearer ' + this.props.user.token
+  //       }
+  //     })
+  //       .then((res) => {
+  //         this.setState({ posts: res.data.posts })
+  //       })
+  //       .catch(console.error)
+  //   }
+  // }
   render () {
     const { posts } = this.state
 
@@ -84,17 +96,19 @@ class IndexPost extends Component {
     }
 
     const postsJsx = posts.map(post => (
-      <li key={post._id}>
-        {post.title} {post.body}
-        <Button value={post._id} onClick={this.destroyPost}>Delete</Button>
-        <UpdatePost value={post._id} name={this.props}/>
-      </li>
+      <div key={post._id} className="row">
+        <li>
+          <h4>{post.title}</h4> <br/> {post.body} <br/>
+          <Button className="delete" value={post._id} onClick={this.destroyPost}>Delete</Button>
+          <UpdatePost value={post._id} name={this.props}/>
+        </li>
+      </div>
     )
     )
     return (
       <div className="wall">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3 className="wall-title">My Wall</h3>
+          <h3 className="wall-title">Wall</h3>
           <ul className="post-list">
             {postsJsx}
           </ul>
