@@ -51,12 +51,12 @@ class UpdatePost extends Component {
     })
       .then(() => this.props.name.msgAlert({
         heading: 'Post Updated',
-        message: messages.createPostSuccess,
+        message: messages.updatePostSuccess,
         variant: 'success'
       }))
       .catch(error => this.props.name.msgAlert({
         heading: 'Failed with error: ' + error.message,
-        message: messages.createPostFailure,
+        message: messages.updatePostFailure,
         variant: 'danger'
       })
       )
