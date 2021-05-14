@@ -27,7 +27,6 @@ To get this just right we had to decide what experience the user wanted from a s
 
 
 ## Technologies Used
-* jQuery
 * HTML/CSS
 * Bootstrap
 * Javascript
