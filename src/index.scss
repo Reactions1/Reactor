@@ -31,6 +31,8 @@ body {
   padding-top: .5rem;
 }
 .row {
+
+  display: block;
   align-content: center;
   border: 10px;
   border-radius: 20px;
@@ -49,5 +51,27 @@ body {
 
 .wall {
   color: white;
+
+  display: block;
   text-align: center;
+}
+.wall-title {
+  text-align: center;
+  margin-left: 3%;
+  margin-bottom: 20px;
+  width: 50;
+}
+
+.row {
+  display: inline-block;
+  align-content: center;
+}
+.delete {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.update {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0
 }

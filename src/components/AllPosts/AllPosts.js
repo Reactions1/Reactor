@@ -34,21 +34,23 @@ class IndexPost extends Component {
       .catch(console.error)
   }
 
-  componentDidUpdate (prevState) {
-    if (this.state !== prevState) {
-      axios({
-        method: 'GET',
-        url: `${apiUrl}/allposts`,
-        headers: {
-          Authorization: 'Bearer ' + this.props.user.token
-        }
-      })
-        .then((res) => {
-          this.setState({ posts: res.data.posts })
-        })
-        .catch(console.error)
-    }
-  }
+
+  // componentDidUpdate (prevState) {
+  //   if (this.state !== prevState) {
+  //     axios({
+  //       method: 'GET',
+  //       url: `${apiUrl}/allposts`,
+  //       headers: {
+  //         Authorization: 'Bearer ' + this.props.user.token
+  //       }
+  //     })
+  //       .then((res) => {
+  //         this.setState({ posts: res.data.posts })
+  //       })
+  //       .catch(console.error)
+  //   }
+  // }
+
   render () {
     const { posts } = this.state
 

@@ -51,12 +51,15 @@ class UpdatePost extends Component {
     })
       .then(() => this.props.name.msgAlert({
         heading: 'Post Updated',
-        message: messages.createPostSuccess,
+
+        message: messages.updatePostSuccess,
+
         variant: 'success'
       }))
       .catch(error => this.props.name.msgAlert({
         heading: 'Failed with error: ' + error.message,
-        message: messages.createPostFailure,
+
+        message: messages.updatePostFailure,
         variant: 'danger'
       })
       )
@@ -68,49 +71,48 @@ class UpdatePost extends Component {
 
     return (
 
-      <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <Button onClick={this.changeModal}> Update Post </Button>
-          <Modal show={this.state.show}>
-            <Modal.Header>Modal Head</Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="title">
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    required
-                    type="text"
-                    name="title"
-                    value={this.state.title}
-                    placeholder="Post"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId="body">
-                  <Form.Label>Body</Form.Label>
-                  <Form.Control
-                    required
-                    name="body"
-                    type="text"
-                    value={this.state.body}
-                    placeholder="Body"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.changeModal}> Close</Button>
-            </Modal.Footer>
-          </Modal>
 
-        </div>
+      <div className="col-sm-10 col-md-8 mx-auto mt-5">
+        <Button onClick={this.changeModal}> Update Post </Button>
+        <Modal show={this.state.show}>
+          <Modal.Header>Modal Head</Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="title">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="title"
+                  value={this.state.title}
+                  placeholder="Post"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="body">
+                <Form.Label>Body</Form.Label>
+                <Form.Control
+                  required
+                  name="body"
+                  type="text"
+                  value={this.state.body}
+                  placeholder="Body"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Button
+                variant="primary"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.changeModal}> Close</Button>
+          </Modal.Footer>
+        </Modal>
+
       </div>
     )
   }
