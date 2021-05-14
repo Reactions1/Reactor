@@ -34,6 +34,7 @@ class IndexPost extends Component {
       .catch(console.error)
   }
 
+
   // componentDidUpdate (prevState) {
   //   if (this.state !== prevState) {
   //     axios({
@@ -49,6 +50,7 @@ class IndexPost extends Component {
   //       .catch(console.error)
   //   }
   // }
+
   render () {
     const { posts } = this.state
 

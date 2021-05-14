@@ -51,11 +51,14 @@ class UpdatePost extends Component {
     })
       .then(() => this.props.name.msgAlert({
         heading: 'Post Updated',
+
         message: messages.updatePostSuccess,
+
         variant: 'success'
       }))
       .catch(error => this.props.name.msgAlert({
         heading: 'Failed with error: ' + error.message,
+
         message: messages.updatePostFailure,
         variant: 'danger'
       })
@@ -67,6 +70,7 @@ class UpdatePost extends Component {
     // }
 
     return (
+
 
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
         <Button onClick={this.changeModal}> Update Post </Button>
