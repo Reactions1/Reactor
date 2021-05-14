@@ -8,6 +8,7 @@ import apiUrl from './../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+
 class CreatePost extends Component {
   constructor () {
     super()
@@ -124,6 +125,7 @@ class CreatePost extends Component {
       </div>
     )
   }
+
 }
 
 export default CreatePost

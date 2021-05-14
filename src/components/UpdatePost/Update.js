@@ -71,6 +71,7 @@ class UpdatePost extends Component {
   render () {
     return (
 
+
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
         <Button onClick={this.changeModal}> Update Post </Button>
         <Modal show={this.state.show}>
