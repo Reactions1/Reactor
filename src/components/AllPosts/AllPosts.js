@@ -33,7 +33,6 @@ class IndexPost extends Component {
       .catch(console.error)
   }
 
-
   // componentDidUpdate (prevState) {
   //   if (this.state !== prevState) {
   //     axios({
