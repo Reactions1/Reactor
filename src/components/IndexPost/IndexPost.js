@@ -7,6 +7,7 @@ import messages from '../AutoDismissAlert/messages'
 import Button from 'react-bootstrap/Button'
 import UpdatePost from './../UpdatePost/Update'
 // import { FaTrash } from 'react-icons/fa'
+import LikeButton from './../Likes/likes'
 
 class IndexPost extends Component {
   constructor (props) {
@@ -88,6 +89,7 @@ class IndexPost extends Component {
         {post.title} {post.body}
         <Button value={post._id} onClick={this.destroyPost}>Delete</Button>
         <UpdatePost value={post._id} name={this.props}/>
+        <LikeButton value={post._id} name={this.props}/>
       </li>
     )
     )
