@@ -29,7 +29,7 @@ class IndexUsers extends Component {
       }
     })
       .then((res) => {
-        console.log(res)
+      //  console.log(res)
         this.setState({ users: res.data.users })
       })
       .catch(console.error)
@@ -37,8 +37,8 @@ class IndexUsers extends Component {
 
   render () {
     const { users } = this.state
-    console.log('this is our user state ', users)
-    console.log('here is our selected user ', this.props.setSelectedUser)
+    //   console.log('this is our user state ', users)
+    //  console.log('here is our selected user ', this.props.setSelectedUser)
     //
     // // if we haven't loaded any movies
     if (!users) {

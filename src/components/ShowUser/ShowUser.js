@@ -55,7 +55,7 @@ class ShowUser extends Component {
   render () {
     // console.log('user id?', this.props.match.match.params.id)
     const { posts } = this.state
-    console.log('here is the selecteduser ', this.props.selectedUser)
+    //  console.log('here is the selecteduser ', this.props.selectedUser)
     // console.log('this is our user email ', posts.0.title)
     //
     // // if we haven't loaded any movies

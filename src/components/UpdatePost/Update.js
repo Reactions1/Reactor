@@ -24,7 +24,7 @@ class UpdatePost extends Component {
   }
 
   handleChange = (event) => {
-    console.log(this.props)
+  //  console.log(this.props)
     event.persist()
     this.setState((prevState) => {
       const name = event.target.name
@@ -51,31 +51,31 @@ class UpdatePost extends Component {
     })
       .then(() => this.props.name.msgAlert({
         heading: 'Post Updated',
-
         message: messages.updatePostSuccess,
-
         variant: 'success'
       }))
+      .then(() => {
+        this.setState({ post: {
+          title: '',
+          body: ''
+        }
+        })
+      })
       .catch(error => this.props.name.msgAlert({
         heading: 'Failed with error: ' + error.message,
-
         message: messages.updatePostFailure,
         variant: 'danger'
       })
       )
   }
   render () {
-    // if (this.state.created) {
-    //   return <Redirect to={`/posts/${this.state.createdId}`} />
-    // }
-
     return (
 
 
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
         <Button onClick={this.changeModal}> Update Post </Button>
         <Modal show={this.state.show}>
-          <Modal.Header>Modal Head</Modal.Header>
+          <Modal.Header>Update Post!</Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="title">
@@ -84,7 +84,7 @@ class UpdatePost extends Component {
                   required
                   type="text"
                   name="title"
-                  value={this.state.title}
+                  value={this.state.post.title}
                   placeholder="Post"
                   onChange={this.handleChange}
                 />
@@ -95,7 +95,7 @@ class UpdatePost extends Component {
                   required
                   name="body"
                   type="text"
-                  value={this.state.body}
+                  value={this.state.post.body}
                   placeholder="Body"
                   onChange={this.handleChange}
                 />

@@ -50,7 +50,7 @@ class IndexPost extends Component {
   }
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
-    console.log('the props ', this.props)
+  //  console.log('the props ', this.props)
     // this function runs at the end of the Mounting stage
     // Here we will make any HTTP requests
     axios({
@@ -65,8 +65,6 @@ class IndexPost extends Component {
       })
       .catch(console.error)
   }
-
-
   // componentDidUpdate (prevState) {
   //   if (this.state !== prevState) {
   //     console.log('this.state' + this.state)
@@ -84,7 +82,6 @@ class IndexPost extends Component {
   //       .catch(console.error)
   //   }
   // }
-
   render () {
     const { posts } = this.state
 
