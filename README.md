@@ -5,7 +5,7 @@
 Creating the ultimate social media reactor that allows you to connect with friends around the world.
 
 ## Important Links
-* [Other Repo](https://github.com/bbeckford305/Virtual-Closet-API)
+* [Other Repo](https://github.com/Reactions1/API)
 * [Deployed API](https://vast-dawn-05766.herokuapp.com/)
 * [Deployed Client](https://reactions1.github.io/Reactor/)
 
