@@ -9,5 +9,7 @@ export default {
   createPostSuccess: 'Post successfully created.',
   createPostFailure: 'Something went wrong.',
   deletePostSuccess: 'Your post was deleted.',
-  deletePostFailure: 'Something went wrong.'
+  deletePostFailure: 'Something went wrong.',
+  updatePostSuccess: 'Updated Succesfully.',
+  updatePostFailure: 'Something went wrong.'
 }

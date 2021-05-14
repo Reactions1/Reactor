@@ -41,17 +41,27 @@ class CreatePost extends Component {
       }
     })
       .then((res) => {
-        console.log('this is the response ' + res.data.post._id)
+        // console.log('this is the response ' + res.data.post._id)
         this.setState({ createdId: res.data.post._id })
       })
+      // .then(() => axios({
+      //   method: 'GET',
+      //   url: `${apiUrl}/posts`,
+      //   headers: {
+      //     Authorization: 'Bearer ' + this.props.user.token
+      //   }
+      // }))
       .then(() => this.props.msgAlert({
         heading: 'Post Created',
         message: messages.createPostSuccess,
         variant: 'success'
       }))
-      // this lets it stay on the same page when a post is created
-      .then((res) => {
-        this.forceUpdate()
+      .then(() => {
+        this.setState({ post: {
+          title: '',
+          body: ''
+        }
+        })
       })
       .catch(error => this.props.msgAlert({
         heading: 'Failed with error: ' + error.message,
@@ -60,21 +70,21 @@ class CreatePost extends Component {
       })
       )
   }
-  componentDidUpdate (prevState) {
-    if (this.state !== prevState) {
-      axios({
-        method: 'GET',
-        url: `${apiUrl}/posts`,
-        headers: {
-          Authorization: 'Bearer ' + this.props.user.token
-        }
-      })
-        .then((res) => {
-          this.setState({ posts: res.data.posts })
-        })
-        .catch(console.error)
-    }
-  }
+  // componentDidUpdate (prevState) {
+  //   if (this.state !== prevState) {
+  //     axios({
+  //       method: 'GET',
+  //       url: `${apiUrl}/posts`,
+  //       headers: {
+  //         Authorization: 'Bearer ' + this.props.user.token
+  //       }
+  //     })
+  //       .then((res) => {
+  //         this.setState({ posts: res.data.posts })
+  //       })
+  //       .catch(console.error)
+  //   }
+  // }
   render () {
     return (
       <div className="row">
@@ -87,7 +97,7 @@ class CreatePost extends Component {
                 required
                 type="text"
                 name="title"
-                value={this.state.title}
+                value={this.state.post.title}
                 placeholder="Post"
                 onChange={this.handleChange}
               />
@@ -98,7 +108,7 @@ class CreatePost extends Component {
                 required
                 name="body"
                 type="text"
-                value={this.state.body}
+                value={this.state.post.body}
                 placeholder="Body"
                 onChange={this.handleChange}
               />

@@ -18,7 +18,6 @@ class IndexPost extends Component {
 
   // do this whenever MovieIndex is first shown on the page (mounted)
   componentDidMount () {
-    console.log('the props ', this.props)
     // this function runs at the end of the Mounting stage
     // Here we will make any HTTP requests
     axios({
@@ -65,7 +64,9 @@ class IndexPost extends Component {
     const postsJsx = posts.map(post => (
       <li key={post._id}>
         {post.owner.email}
-        {post.title} {post.body}
+        <br/>
+        {post.title}
+        {post.body}
       </li>
     )
     )
@@ -73,6 +74,7 @@ class IndexPost extends Component {
       <div className="wall">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3 className="wall-title">News Feed</h3>
+          <br/>
           <ul className="post-list">
             {postsJsx}
           </ul>
